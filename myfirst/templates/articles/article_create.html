@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Создать статью</title>
+    <script src="https://cdn.ckeditor.com/ckeditor5/21.0.0/classic/ckeditor.js"></script>
+    <script type="text/javascript" src="/js/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="/js/ckeditor/adapters/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</head>
+<style>
+body{
+position: relative;
+background: #FFFFFF;
+}
+hr {
+    border: none; /* Убираем границу */
+    background-color:#CDCDCD; /* Цвет линии */
+    color: red; /* Цвет линии для IE6-7 */
+    height: 2px; /* Толщина линии */
+    margin-top:30px;
+   }
+.link_button {
+    display: inline-block; /* Строчно-блочный элемент */
+    background: #315AF2; /* Серый цвет фона */
+    color: #fff; /* Белый цвет текста */
+    padding: 1rem 1.5rem; /* Поля вокруг текста */
+    text-decoration: none; /* Убираем подчёркивание */
+    border-radius: 6px; /* Скругляем уголки */
+    font-size: 16px;
+    align-self: center;
+    margin-top:20px;
+    padding: 6px 16px;
+    margin-left:1700px;
+    font-weight: bold;
+   }
+
+.parent
+{
+	height: 50px;
+}
+.child
+{
+	height: 100px;
+	display: inline-block;
+}
+
+
+.article_new{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 44px;
+    line-height: 128%;
+/* or 56px */
+
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.416667px;
+
+    color: #315AF2;
+}
+.article_title{
+   background: #FFFFFF;
+   border: 2px solid #CDCDCD;
+   border-radius: 3px;
+   width: 881px;
+   height: 48px;
+   font-size:24px;
+   margin-left:140px;
+   margin-bottom:40px;
+   margin-top:30px;
+}
+.create_button{
+   color: #FFFFFF;
+   font-size: 18px;
+   line-height: 22px;
+   width: 159px;
+   height: 50px;
+   background: #E9399C;
+   border-radius: 3px;
+   border:none;
+   margin-left:20px;
+}
+#add_title{
+   font-family: Museo Cyrl;
+   font-size: 45px;
+   line-height: 52px;
+/* identical to box height, or 116% */
+   letter-spacing: -0.416667px;
+   color: #315AF2;
+   margin-left:140px;
+}
+.text_editor{
+  position: absolute;
+  width: 881px;
+  height: 478px;
+  margin-left:140px;
+  top: 340px;
+
+  background: #FFFFFF;
+  border: 2px solid #CDCDCD;
+  box-sizing: border-box;
+  border-radius: 3px;
+}
+.image_upload{
+  position: absolute;
+  width: 298px;
+  height: 135px;
+  left: 1052px;
+
+  margin-top:26px;
+  background: #FFFFFF;
+  border: 2px solid #CDCDCD;
+  box-sizing: border-box;
+  border-radius: 3px;
+
+}
+#upload_button{
+    display: inline-block; /* Строчно-блочный элемент */
+    background: #315AF2; /* Серый цвет фона */
+    color: #fff; /* Белый цвет текста */
+    padding: 1rem 1.5rem; /* Поля вокруг текста */
+    text-decoration: none; /* Убираем подчёркивание */
+    border-radius: 6px; /* Скругляем уголки */
+    align-self: center;
+    margin: 10px 0px;
+    padding: 6px 16px;
+    margin-left:75px;
+    margin-top:-5px;
+    width: 155px;
+    height: 50px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 22px;
+/* identical to box height */
+    color: #FFFFFF;
+    border:none;
+}
+#upload_image{
+   font-style: normal;
+   font-weight: bold;
+   font-size: 24px;
+   line-height: 31px;
+/* identical to box height */
+   color: #315AF2;
+   margin-top:10px;
+   margin-left:23px;
+   font-weight: bold;
+}
+#go_back{
+  margin-top:550px;
+  width:260px;
+  margin-left:140px;
+  font-weight: bold;
+}
+.thumb-image{
+ float:left;
+ width:285px;
+ height:285px;
+ position:relative;
+ padding:5px;
+ margin-top:-70px;
+}
+
+input[type="file"] {
+  display: block;
+}
+.imageThumb {
+  width:290px;
+  height:290px;
+  border: 2px solid;
+  padding: 1px;
+  cursor: pointer;
+  margin-top:-80px;
+}
+.pip {
+  display: inline-block;
+  margin: 10px 10px 0 0;
+}
+.remove {
+  display: block;
+  background: #444;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+}
+.remove:hover {
+  background: white;
+  color: black;
+}
+
+</style>
+<body>
+<div class="parent">
+	<div class="child">
+       <a href="{% url 'articles:article_create' %}" class="link_button">+ Добавить статью</a>
+	</div>
+
+</div>
+<hr>
+   <h2 id="add_title">Добавить статью</h2>
+   <p>{{answer}}</p>
+   <form action="" method="POST" enctype="multipart/form-data">
+       {% csrf_token %}
+       <div id="title">
+          <input type="text"  placeholder="Ведите название статьи"  name="article_name" required
+                class="article_title">
+          <button type="submit" class="create_button" onclick="sendEmail(editor)">Опубликовать</button>
+       </div>
+       <div class="text_editor">
+          <textarea placeholder="" name="article_text"  id="editor"></textarea>
+       </div>
+       <div class="image_upload">
+           <p id="upload_image">Загрузить изображение</p>
+           <button style=""
+                   onclick="document.getElementById('files').click()" id="upload_button" >Файл</button>
+           <input type='file' style="display:none" id="files" name="files[]" multiple>
+           <div id="image-holder">
+
+           </div>
+           <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+      <div class="field" align="left">
+
+      </div>
+
+
+       <a href="{% url 'articles:index' %}" class="link_button" id="go_back">Вернуться обратно к списку статей</a>
+   </form>
+   <hr>
+   <script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+
+    $(document).ready(function() {
+     if (window.File && window.FileList && window.FileReader) {
+      $("#files").on("change", function(e) {
+      var files = e.target.files,
+        filesLength = files.length;
+      for (var i = 0; i < filesLength; i++) {
+        var f = files[i]
+        var fileReader = new FileReader();
+        fileReader.onload = (function(e) {
+          var file = e.target;
+          $("<span class=\"pip\">" +
+            "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
+            "<br/><span class=\"remove\">Убрать картинку</span>" +
+            "</span>").insertAfter("#files");
+          $(".remove").click(function(){
+            $(this).parent(".pip").remove();
+          });
+
+          // Old code here
+          /*$("<img></img>", {
+            class: "imageThumb",
+            src: e.target.result,
+            title: file.name + " | Click to remove"
+          }).insertAfter("#files").click(function(){$(this).remove();});*/
+
+        });
+        fileReader.readAsDataURL(f);
+        }
+      });
+    } else {
+    alert("Your browser doesn't support to File API")
+  }
+});
+</script>
+
+</body>
+</html>

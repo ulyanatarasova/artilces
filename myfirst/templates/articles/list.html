@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Последние статьи{% endblock %}
+{% block content %}
+<div class="parent">
+	<div class="child">
+       <a href="{% url 'articles:article_create' %}" class="link_button">+ Добавить статью</a>
+	</div>
+
+</div>
+
+{% for i in latest_article %}
+<hr>
+<div class="new">
+      <h1 id="new">NEW</h1>
+      <p class="article_new">{{i.article_title}}</p>
+      <p id="new_text">{{i.arcticle_text}}</p>
+      <a href="{%url 'articles:detail' i.id %}" id="read" >Читать</a>
+      <div>
+         <img src="/media/{{i.header_image}}" class="new_image" width="400" height="400"><br>
+      </div>
+</div>
+<hr>
+{% endfor %}
+    <h3 class="new" id="other_articles">Другие статьи</h3>
+    {% if latest_articles_list %}
+       {% for a in latest_articles_list %}
+          <div class="article_link">
+             <em class="date">{{a.pub_date}}</em><br>
+              <img src="/media/{{a.header_image}}" class="image"><br>
+              <a href="{% url 'articles:detail' a.id %}" class="article_title">{{a.article_title}} </a><br>
+          </div>
+
+       {% endfor %}
+    {% else %}
+       Статьи не найдены.
+    {% endif %}
+{% endblock %}
+
+

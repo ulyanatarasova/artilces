@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Мой сайт{% endblock %}</title>
+</head>
+    <style type="text/css">
+
+body{
+position: relative;
+background: #FFFFFF;
+}
+hr {
+    border: none; /* Убираем границу */
+    background-color:#CDCDCD; /* Цвет линии */
+    color: red; /* Цвет линии для IE6-7 */
+    height: 2px; /* Толщина линии */
+
+   }
+#add_articles{
+    display: inline-block; /* Строчно-блочный элемент */
+    background: #315AF2; /* Серый цвет фона */
+    color: #fff; /* Белый цвет текста */
+    padding: 1rem 1.5rem; /* Поля вокруг текста */
+    text-decoration: none; /* Убираем подчёркивание */
+    border-radius: 6px; /* Скругляем уголки */
+    font-size: 16px;
+    align-self: center;
+}
+
+.parent
+{
+	height: 70px;
+}
+.child
+{
+	height: 100px;
+	display: inline-block;
+}
+.link_button {
+    display: inline-block; /* Строчно-блочный элемент */
+    background: #315AF2; /* Серый цвет фона */
+    color: #fff; /* Белый цвет текста */
+    padding: 1rem 1.5rem; /* Поля вокруг текста */
+    text-decoration: none; /* Убираем подчёркивание */
+    border-radius: 6px; /* Скругляем уголки */
+    font-size: 16px;
+    align-self: center;
+    margin-bottom:0px;
+    margin-top:15px;
+    padding: 6px 16px;
+    margin-left:1700px;
+    margin-top:20px;
+   }
+.article_new{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 44px;
+    line-height: 128%;
+/* or 56px */
+
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.416667px;
+
+    color: #315AF2;
+}
+#new{
+   font-size: 16px;
+   line-height: 20px;
+/* identical to box height, or 125% */
+
+   display: flex;
+   align-items: center;
+   letter-spacing: -0.416667px;
+
+   color: #E9399C;
+}
+#new_text{
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 136%;
+/* or 22px */
+
+display: flex;
+align-items: center;
+letter-spacing: -0.416667px;
+color: #000000;
+margin-right:1200px;
+
+}
+#read{
+    display: inline-block; /* Строчно-блочный элемент */
+    background: #315AF2; /* Серый цвет фона */
+    color: #fff; /* Белый цвет текста */
+    padding: 1rem 1.5rem; /* Поля вокруг текста */
+    text-decoration: none; /* Убираем подчёркивание */
+    border-radius: 6px; /* Скругляем уголки */
+    position: static;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 38px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.416667px;
+
+    color: #FFFFFF;
+    width: 100px;
+    height: 25px;
+    left: 120px;
+    top: 400px;
+}
+.new{
+  margin-left:140px;
+  margin-top:40px;
+}
+#other_articles{
+width: 231px;
+height: 38px;
+left: 119px;
+top: 651px;
+
+font-family: Museo Cyrl;
+font-style: normal;
+font-weight: bold;
+font-size: 32px;
+line-height: 38px;
+display: flex;
+align-items: center;
+letter-spacing: -0.416667px;
+
+color: #315AF2;
+}
+.article_link{
+   display: flex;
+    flex-flow: column wrap;
+    margin-left:140px;
+}
+.article_link{
+    font-size:20px;
+    text-decoration: none; /* Убираем подчёркивание */
+    display: inline-block; /* Строчно-блочный элемент */
+    background:; /* Серый цвет фона */
+    border: 2px solid #CDCDCD;
+    box-sizing: border-box;
+    color: #315AF2; /* Белый цвет текста */
+    padding: 1rem 1.5rem; /* Поля вокруг текста */
+    text-decoration: none; /* Убираем подчёркивание */
+    border-radius: 2px; /* Скругляем уголки */
+    width:400px;
+    height:400px;
+    padding-top:40px;
+    text-align: center;
+    font-family: Circe Rounded;
+    margin-bottom:98px;
+}
+.image{
+ width:310px;
+ height:210px;
+}
+a.article_title {
+  text-decoration: none;
+  padding:30px;
+}
+.date{
+   font-size: 14px;
+   line-height: 20px;
+   color: #979797;
+   text-decoration: none;
+   margin-right:190px;
+}
+.new_image{
+  margin-top:-240px;
+  margin-bottom:60px;
+  margin-left:1100px;
+}
+#blog{
+  margin-left:140px;
+}
+
+</style>
+<body>
+
+   {% block content %}{% endblock %}
+
+</body>
+</html>

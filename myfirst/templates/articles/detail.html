@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% block title %}{{article.article_title}}{% endblock %}
+
+{% block content %}
+
+<div class="parent">
+	<div class="child">
+       <a href="{% url 'articles:article_create' %}" class="link_button">+ Добавить статью</a>
+	</div>
+
+</div>
+<hr>
+<style>
+body{
+   background: #E5E5E5;
+}
+.article_title{
+  position: static;
+width: 400px;
+height: 123px;
+left: 0px;
+top: 0px;
+font-style: normal;
+font-weight: bold;
+font-size: 32px;
+line-height: 128%;
+/* or 41px */
+letter-spacing: -0.416667px;
+color: #315AF2;
+flex: none;
+order: 0;
+margin-left:650px;
+}
+.parent
+{
+    background-color:white;
+	height: 70px;
+}
+.child
+{
+	height: 100px;
+	display: inline-block;
+}
+.new_image{
+  border-radius:3px;
+  margin-top:-40px;
+  margin-left:650px;
+  width:600px;
+  height:400px;
+}
+.article_text{
+ margin-left:650px;
+ margin-right:650px;
+ margin-top:200px;
+}
+.article_comment{
+  margin-left:650px;
+  margin-right:650px;
+  margin-top:50px;
+}
+.username{
+  width:600px;
+  height:20px;
+  font-size:16px;
+  margin-top:30px;
+  margin-bottom:30px;
+}
+.comment_text{
+  width:600px;
+  font-size:16px;
+}
+.leave_comment{
+   color: #FFFFFF;
+   font-size: 18px;
+   line-height: 22px;
+   width: 300px;
+   height: 50px;
+   background: #E9399C;
+   border-radius: 3px;
+   border:none;
+   margin-left:150px;
+   margin-top:20px;
+}
+
+</style>
+<div>
+    <div>
+       <h2 class="article_title">{{article.article_title}}</h2>
+    </div>
+    <div class="image">
+        <img src="/media/{{article.header_image}}" class="new_image">
+    </div>
+    <div>
+        <p class="article_text">{{article.arcticle_text}}</p>
+    </div>
+    <div class="article_comment">
+         {% if latest_comments_list %}
+           {% for s in latest_comments_list %}
+           <p>
+              <strong>{{s.author_name}}</strong>
+              <p>{{s.comment_text}}</p>
+           </p>
+           {% endfor %}
+         {% else %}
+             Комментарии не найдены.
+         {% endif %}
+
+         <form action="{%url 'articles:leave_comment' article.id %}" method="POST">
+              {% csrf_token %}
+              <input type="text" placeholder="Ваше имя..." name="name" class="username"><br>
+             <textarea name="text" required="" placeholder="Текст комментария..." cols="30" rows="10"
+                       class="comment_text"></textarea><br>
+             <button type="submit" class="leave_comment">Оставить комментарий</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
